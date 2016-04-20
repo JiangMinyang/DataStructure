@@ -24,6 +24,7 @@ private:
   void print(Node *now, int dep);
   Node* find(int key);
   Node* findPre(Node *now); 
+  void fixUp(Node *now);
 public:
   RedBlackTree();
   ~RedBlackTree();

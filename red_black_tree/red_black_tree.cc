@@ -157,7 +157,47 @@ Node* RedBlackTree :: findPre(Node *now) {
 bool RedBlackTree :: contains(int key) {
   return find(key) != NULL;
 }
-bool RedBlackTree :: remove(int key);
+
+vodi RedBlackTree :: fixUp(Node *d) {
+
+}
+
+bool RedBlackTree :: remove(int key) {
+  Node *x = find(key);
+  if (x == NULL) return false;
+  Node *y, *z;
+  if (x->left == NULL or x->right == NULL) {
+    y = x;
+  } else {
+    y = findPre(x);
+  }
+  if (y->left != NULL) {
+    z = y->left;
+  }
+  else {
+    z = y->right;
+  }
+  z->parent = y->parent;
+  if (y->parent == NULL) {
+    root = z;
+  }
+  else {
+    if (y->parent->left == y) {
+      y->parent->left = z;
+    }
+    else {
+      y->parent->right = z;
+    }
+  }
+  if (x != y) {
+    x->key = y->key;
+    x->value = y->value;
+  }
+  if (!y->color) {
+    fixUp(z);
+  }
+  return true;
+}
 
 void RedBlackTree :: print() {
   print(root, 0);
