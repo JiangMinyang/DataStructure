@@ -132,6 +132,33 @@ void RedBlackTree :: RBFix(Node *now) {
   }
 }
 
+Node* RedBlackTree :: find(int key) {
+  Node *now = root;
+  while(true) {
+    if (now->key == NULL) return NULL;
+    if (now->key == key) break;
+    if (now->key > key) {
+      now = now->left;
+    }
+    else {
+      now = now->right;
+    }
+  }
+  return now;
+}
+Node* RedBlackTree :: findPre(Node *now) {
+  if (now->left == NULL) return NULL;
+  Node *pre = now->left;
+  while (pre->right != NULL) {
+    pre = pre->right;
+  }
+  return pre;
+} 
+bool RedBlackTree :: contains(int key) {
+  return find(key) != NULL;
+}
+bool RedBlackTree :: remove(int key);
+
 void RedBlackTree :: print() {
   print(root, 0);
 }

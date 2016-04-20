@@ -22,9 +22,13 @@ private:
   void rightRotate(Node *x);
   void RBFix(Node *x);
   void print(Node *now, int dep);
+  Node* find(int key);
+  Node* findPre(Node *now); 
 public:
   RedBlackTree();
   ~RedBlackTree();
+  bool contains(int key);
+  bool remove(int key);
   void insert(int key);
   void insert(int key, int value);
   void print();
